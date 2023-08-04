@@ -1,0 +1,10 @@
+@import "../../styles.scss";
+
+header {
+  background-color: $dark-pink;
+  color: white;
+
+  h1 {
+    font-family: "Borel", sans-serif;
+  }
+}
