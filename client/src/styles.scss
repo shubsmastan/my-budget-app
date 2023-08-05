@@ -17,7 +17,7 @@ $light-orange: #ffdbaa;
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: $light-cream;
+  background-color: $light-orange;
 }
 
 .flex {
@@ -53,8 +53,14 @@ textarea {
   border: none;
   font-family: inherit;
   font-size: inherit;
+  background-color: white;
+}
+
+button {
+  cursor: pointer;
 }
 
 a {
   text-decoration: none;
+  color: inherit;
 }

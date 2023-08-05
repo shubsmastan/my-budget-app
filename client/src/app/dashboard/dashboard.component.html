@@ -1,1 +1,16 @@
-<p>dashboard works!</p>
+<div class="pad">
+  <!-- <button>+ Add Category</button> -->
+  <div class="categories">
+    <div *ngFor="let cat of categories" class="category-card">
+      <div class="card-buttons">
+        <button class="edit">✐</button>
+        <button class="delete">×</button>
+      </div>
+      <p>
+        <a [routerLink]="['/dashboard', cat]">{{ cat }}</a>
+      </p>
+      <p>Budget</p>
+      <p>Spend</p>
+    </div>
+  </div>
+</div>
