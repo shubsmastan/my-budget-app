@@ -1,8 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Borel&family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600&family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
 
+$dark-purple: #654e92;
 $dark-pink: #cd6688;
 $light-pink: #ffd1da;
-$light-cream: #fff0f5;
+$light-cream: #fffae8;
 $light-orange: #ffdbaa;
 
 *,
@@ -16,4 +17,44 @@ $light-orange: #ffdbaa;
 
 body {
   font-family: "Roboto", sans-serif;
+  background-color: $light-cream;
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pad {
+  padding: 10px 20px;
+}
+
+@media screen and (min-width: 600px) {
+  .pad {
+    padding: 10px 50px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .pad {
+    padding: 20px 100px;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+textarea {
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+a {
+  text-decoration: none;
 }
