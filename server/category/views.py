@@ -1,8 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-
-# Create your views here.
+from django.http import JsonResponse
+from .models import Category
 
 
 def get_categories(req):
-    return HttpResponse("Respond with a user's categories")
+    if req.method == "GET":
+        categories = []
+        return JsonResponse({"categories": []})
+    if req.method == "POST":
+        return JsonResponse({"error": "Need to be an authenticated user."})
