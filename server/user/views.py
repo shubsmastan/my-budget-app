@@ -48,7 +48,7 @@ def sign_up(req):
 
 
 @csrf_exempt
-def log_in(req):
+def sign_in(req):
     if req.method == "POST":
         username = req.POST.get("username")
         password = req.POST.get("password")
@@ -63,11 +63,18 @@ def log_in(req):
         user = authenticate(req, username=username, password=password)
         if user is not None:
             login(req, user)
-            token = Token.objects.get_or_create(user=user)
-            return JsonResponse({"username": username, "accessToken": str(token[0])})
+            # token = Token.objects.get_or_create(user=user)
+            return JsonResponse({"message": "User authentication successful."})
+            # return JsonResponse({"username": username, "accessToken": str(token[0])})
         else:
             return JsonResponse(
                 {"error": "Username and password do not match."}, status=404
             )
     else:
         return JsonResponse({"error": "Method not allowed."}, status=403)
+
+
+@csrf_exempt
+def sign_out(req):
+    logout(req)
+    return JsonResponse({"message": "User logged out successfully."})
