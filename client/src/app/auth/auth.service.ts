@@ -41,5 +41,6 @@ export class AuthService {
   logout() {
     this.cookieService.delete('token');
     this.isLoggedIn = false;
+    this.router.navigate(['/auth']);
   }
 }
