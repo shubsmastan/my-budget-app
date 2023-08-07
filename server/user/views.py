@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from category.models import Category
-from rest_framework.authtoken.models import Token
+from rest_framework_simplejwt.tokens import RefreshToken
 from django.views.decorators.csrf import csrf_exempt
 import json
 
@@ -84,9 +84,15 @@ def sign_in(req):
         user = authenticate(req, username=username, password=password)
         if user is not None:
             login(req, user)
-            token = Token.objects.get_or_create(user=user)
-            return JsonResponse({"accessToken": str(token[0])})
-            # return JsonResponse({"message": "User authentication successful."})
+            token = RefreshToken.for_user(user)
+            return JsonResponse(
+                {
+                    "username": user.username,
+                    "first_name": user.first_name,
+                    "last_name": user.last_name,
+                    "token": str(token.access_token),
+                }
+            )
         else:
             return JsonResponse(
                 {"error": "Username and password do not match."}, status=404

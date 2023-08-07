@@ -1,16 +1,20 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import Category
 
+JWTAuthenticator = JWTAuthentication()
 
-@csrf_exempt
+
 def get_categories(req):
-    if req.user.is_authenticated == False:
-        return JsonResponse({"error": "Need to be an authenticated user."})
+    # if not req.headers["Authorization"]:
+    #     return JsonResponse({"error": "Need to be an authenticated user."})
+    token = req.headers["Authorization"].split()[1]
+    user = JWTAuthenticator.authenticate(req)
+    print(user)
     user_id = req.user.id
     if req.method == "GET":
         q = Category.objects.filter(user_id=user_id)
-        print(q)
         return JsonResponse([cat.serialise() for cat in q], safe=False)
     if req.method == "POST":
         name = req.POST.get("name")
@@ -19,3 +23,5 @@ def get_categories(req):
         category = Category(name=name, user_id=user_id)
         category.save()
         return JsonResponse({"categories": []})
+    else:
+        return JsonResponse({"error": "Method not allowed."})

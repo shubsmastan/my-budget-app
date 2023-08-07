@@ -14,7 +14,7 @@ export class AuthService {
     private router: Router
   ) {}
 
-  isLoggedIn = this.cookieService.get('token') ? true : false;
+  isLoggedIn = this.cookieService.get('accesstoken') ? true : false;
   error = '';
   errorSubject = new BehaviorSubject<string>(this.error);
 
@@ -23,7 +23,7 @@ export class AuthService {
       .post('http://localhost:8000/users/signin/', JSON.stringify(formData))
       .subscribe({
         next: (res: any) => {
-          this.cookieService.set('token', res.accessToken);
+          this.cookieService.set('accesstoken', res.token);
           this.isLoggedIn = true;
           this.router.navigate(['/dashboard']);
         },
@@ -39,7 +39,7 @@ export class AuthService {
   }
 
   logout() {
-    this.cookieService.delete('token');
+    this.cookieService.delete('accesstoken');
     this.isLoggedIn = false;
     this.router.navigate(['/auth']);
   }
