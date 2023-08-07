@@ -22,3 +22,16 @@ header {
     gap: 10px;
   }
 }
+
+button,
+.btn {
+  @include btn-primary($light-pink, black);
+}
+
+a {
+  color: white;
+
+  &:hover {
+    text-decoration: none;
+  }
+}

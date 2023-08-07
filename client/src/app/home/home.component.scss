@@ -1,0 +1,17 @@
+h1 {
+  padding: 15px 0 30px;
+}
+
+p {
+  padding-bottom: 10px;
+
+  &:first-of-type {
+    padding-top: 20px;
+  }
+}
+
+img {
+  height: 300px;
+  width: auto;
+  border-radius: 10px;
+}

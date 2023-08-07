@@ -4,12 +4,8 @@ form {
   flex-direction: column;
 }
 
-button,
-a {
-  padding: 5px;
-  border-radius: 10px;
-  background-color: $dark-pink;
-  color: white;
+button {
+  @include btn-primary($dark-pink, white);
 }
 
 input {

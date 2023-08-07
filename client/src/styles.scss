@@ -20,29 +20,6 @@ body {
   background-color: $light-orange;
 }
 
-.flex {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-}
-
-.pad {
-  padding: 10px 20px;
-}
-
-@media screen and (min-width: 600px) {
-  .pad {
-    padding: 10px 50px;
-  }
-}
-
-@media screen and (min-width: 800px) {
-  .pad {
-    padding: 20px 100px;
-  }
-}
-
 ul {
   list-style: none;
 }
@@ -61,6 +38,44 @@ button {
 }
 
 a {
+  color: $dark-pink;
   text-decoration: none;
-  color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pad {
+  padding: 10px 20px;
+}
+
+@mixin btn-primary($bgcolor, $color) {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: $bgcolor;
+  color: $color;
+}
+
+@media screen and (min-width: 600px) {
+  .pad {
+    padding: 10px 50px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .pad {
+    padding: 20px 100px;
+  }
 }
