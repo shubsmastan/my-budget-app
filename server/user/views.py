@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from category.models import Category
 from rest_framework.authtoken.models import Token
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -44,6 +45,23 @@ def sign_up(req):
             last_name=last_name,
         )
         user.save()
+        categories = [
+            "Bills",
+            "Charity",
+            "Eating out",
+            "Entertainment",
+            "Expenses",
+            "Finances",
+            "Gifts",
+            "Groceries",
+            "Holidays",
+            "Personal care",
+            "Shopping",
+            "Transport",
+        ]
+        for cat in categories:
+            cat = Category(name=cat, user_id=user.id)
+            cat.save()
         return JsonResponse({"message": "User created successfully."})
     else:
         return JsonResponse({"error": "Method not allowed."}, status=403)
