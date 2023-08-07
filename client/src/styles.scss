@@ -69,6 +69,10 @@ a {
   padding: 10px 20px;
 }
 
+.error {
+  color: red;
+}
+
 @mixin btn-primary($bgcolor, $color) {
   padding: 5px;
   border-radius: 10px;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChanges } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 
 @Component({
@@ -8,5 +8,8 @@ import { DashboardService } from '../dashboard.service';
 })
 export class MainComponent {
   constructor(public dashboardService: DashboardService) {}
-  // categories = [];
+
+  ngOnInit() {
+    this.dashboardService.getCategories();
+  }
 }

@@ -1,6 +1,10 @@
-<div class="loading" *ngIf="dashboardService.categories.length === 0">
+<div class="loading" *ngIf="dashboardService.isLoading">
   <img src="../../../assets/ripple.svg" alt="Loading" />
-  <p class="animate"">Loading your data ...</p>
+  <p class="animate">Loading your data ...</p>
+</div>
+
+<div class="loading" *ngIf="dashboardService.error">
+  <p class="error">{{ dashboardService.error }}</p>
 </div>
 
 <div class="pad" *ngIf="dashboardService.categories.length > 0">
