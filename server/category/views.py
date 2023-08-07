@@ -10,8 +10,8 @@ def get_categories(req):
     user_id = req.user.id
     if req.method == "GET":
         q = Category.objects.filter(user_id=user_id)
-        print()
-        return JsonResponse({"message": "success"})
+        print(q)
+        return JsonResponse([cat.serialise() for cat in q], safe=False)
     if req.method == "POST":
         name = req.POST.get("name")
         if name == None or name == "":

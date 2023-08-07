@@ -10,5 +10,11 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = "categories"
 
-    def __str__(self):
-        return self.name
+    def serialise(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "user_id": self.user_id,
+            "created": self.created,
+            "modified": self.modified,
+        }
