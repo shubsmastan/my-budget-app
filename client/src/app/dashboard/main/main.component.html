@@ -1,7 +1,12 @@
-<div class="pad">
+<div class="loading" *ngIf="dashboardService.categories.length === 0">
+  <img src="../../../assets/ripple.svg" alt="Loading" />
+  <p class="animate"">Loading your data ...</p>
+</div>
+
+<div class="pad" *ngIf="dashboardService.categories.length > 0">
   <!-- <button>+ Add Category</button> -->
   <div class="categories">
-    <div *ngFor="let cat of categories" class="category-card">
+    <div *ngFor="let cat of dashboardService.categories" class="category-card">
       <div class="card-buttons">
         <button class="edit">✐</button>
         <button class="delete">×</button>

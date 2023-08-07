@@ -18,6 +18,14 @@ $light-orange: #ffdbaa;
 body {
   font-family: "Roboto", sans-serif;
   background-color: $light-orange;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  height: 100%;
 }
 
 ul {

@@ -8,15 +8,15 @@ import { AuthService } from './auth.service';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent {
-  authForm = this.formBuilder.group({
-    username: '',
-    password: '',
-  });
-
   constructor(
     private formBuilder: FormBuilder,
     public authService: AuthService
   ) {}
+
+  authForm = this.formBuilder.group({
+    username: '',
+    password: '',
+  });
 
   onSubmit(e: Event) {
     e.preventDefault();

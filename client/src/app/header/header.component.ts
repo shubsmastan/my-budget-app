@@ -9,6 +9,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HeaderComponent {
   constructor(public authService: AuthService, private router: Router) {}
+
   buttonText = this.authService.isLoggedIn ? 'Sign in' : 'Sign out';
 
   onClick() {

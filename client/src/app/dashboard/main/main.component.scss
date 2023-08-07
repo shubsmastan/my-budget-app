@@ -44,10 +44,46 @@
   color: var(--color-sage);
 }
 
+.loading {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60.61px);
+
+  img {
+    height: 50px;
+    width: 50spx;
+  }
+
+  p {
+    animation: flash 1.25s ease-in-out 0s infinite;
+  }
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    oapcity: 1;
+  }
+}
+
 @media screen and (min-width: 600px) {
   .categories {
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .loading {
+    height: calc(100vh - 80.61px);
   }
 }
 

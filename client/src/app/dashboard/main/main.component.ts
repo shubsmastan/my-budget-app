@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CATEGORIES } from '../../mock-categories';
+import { DashboardService } from '../dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,5 +7,6 @@ import { CATEGORIES } from '../../mock-categories';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
-  categories = CATEGORIES;
+  constructor(public dashboardService: DashboardService) {}
+  // categories = [];
 }

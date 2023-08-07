@@ -7,8 +7,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent {
-  id: string | null = null;
   constructor(private route: ActivatedRoute) {}
+
+  id: string | null = null;
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');

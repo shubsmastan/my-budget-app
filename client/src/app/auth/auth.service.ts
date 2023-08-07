@@ -8,15 +8,15 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  isLoggedIn = this.cookieService.get('token') ? true : false;
-  error = '';
-  errorSubject = new BehaviorSubject<string>(this.error);
-
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,
     private router: Router
   ) {}
+
+  isLoggedIn = this.cookieService.get('token') ? true : false;
+  error = '';
+  errorSubject = new BehaviorSubject<string>(this.error);
 
   login(formData: { username: string; password: string }) {
     this.http
