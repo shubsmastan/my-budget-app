@@ -1,18 +1,20 @@
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.authtoken.models import Token
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 
 @csrf_exempt
 def sign_up(req):
     if req.method == "POST":
-        username = req.POST.get("username")
-        first_name = req.POST.get("first_name")
-        last_name = req.POST.get("last_name")
-        password = req.POST.get("password")
-        confirm_password = req.POST.get("confirm_password")
+        data = json.loads(req.body)
+        username = data["username"]
+        first_name = data["first_name"]
+        last_name = data["last_name"]
+        password = data["password"]
+        confirm_password = data["confirm_password"]
         if username == None or username == "":
             return JsonResponse({"error": "Please provide a username."}, status=400)
         try:
@@ -50,8 +52,9 @@ def sign_up(req):
 @csrf_exempt
 def sign_in(req):
     if req.method == "POST":
-        username = req.POST.get("username")
-        password = req.POST.get("password")
+        data = json.loads(req.body)
+        username = data["username"]
+        password = data["password"]
         if username == None or username == "":
             return JsonResponse({"error": "Please enter your username."}, status=400)
         if password == None or password == "":
@@ -63,9 +66,9 @@ def sign_in(req):
         user = authenticate(req, username=username, password=password)
         if user is not None:
             login(req, user)
-            # token = Token.objects.get_or_create(user=user)
-            return JsonResponse({"message": "User authentication successful."})
-            # return JsonResponse({"username": username, "accessToken": str(token[0])})
+            token = Token.objects.get_or_create(user=user)
+            return JsonResponse({"accessToken": str(token[0])})
+            # return JsonResponse({"message": "User authentication successful."})
         else:
             return JsonResponse(
                 {"error": "Username and password do not match."}, status=404
