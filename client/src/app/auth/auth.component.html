@@ -1,9 +1,10 @@
 <div class="pad">
-  <form class="flex">
-    <label for="email">Email</label>
-    <input type="email" name="email" id="email" />
+  <form class="flex" [formGroup]="authForm">
+    <label for="username">Username</label>
+    <input type="username" formControlName="username" id="username" value="" />
     <label for="pwd">Password</label>
-    <input type="password" name="pwd" id="pwd" />
-    <a [routerLink]="['/dashboard']">Log in</a>
+    <input type="password" formControlName="password" id="password" value="" />
+    <button (click)="onSubmit($event)">Log in</button>
+    <p class="error">{{ authService.error }}</p>
   </form>
 </div>
