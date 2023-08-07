@@ -10,6 +10,7 @@ export class MainComponent {
   constructor(public dashboardService: DashboardService) {}
 
   ngOnInit() {
+    this.dashboardService.getUser();
     this.dashboardService.getCategories();
   }
 }

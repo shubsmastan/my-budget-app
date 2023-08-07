@@ -9,6 +9,10 @@
 
 <div class="pad" *ngIf="dashboardService.categories.length > 0">
   <!-- <button>+ Add Category</button> -->
+  <p>
+    Hello {{ dashboardService.user.first_name }}! How is your spending this
+    month?
+  </p>
   <div class="categories">
     <div *ngFor="let cat of dashboardService.categories" class="category-card">
       <div class="card-buttons">
@@ -16,7 +20,7 @@
         <button class="delete">×</button>
       </div>
       <p>
-        <a [routerLink]="['/dashboard', cat]">{{ cat }}</a>
+        <a [routerLink]="['/dashboard', cat]">{{ cat.name }}</a>
       </p>
       <p>Budget</p>
       <p>Spend</p>

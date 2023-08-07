@@ -9,11 +9,33 @@ import { CookieService } from 'ngx-cookie-service';
 export class DashboardService {
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
+  user: any;
   categories: any = [];
   isLoading = true;
   error = '';
   categorySubject = new BehaviorSubject<any[]>(this.categories);
   errorSubject = new BehaviorSubject<string>(this.error);
+
+  getUser() {
+    this.http
+      .get('http://localhost:8000/users/', {
+        headers: {
+          Authorization: `Token ${this.cookieService.get('accesstoken')}`,
+        },
+      })
+      .subscribe({
+        next: (res: any) => {
+          if (res.error) {
+            console.log(res);
+            return;
+          }
+          this.user = res;
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+  }
 
   getCategories() {
     this.http

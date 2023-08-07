@@ -3,8 +3,29 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from category.models import Category
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.views.decorators.csrf import csrf_exempt
 import json
+
+JWTAuthenticator = JWTAuthentication()
+
+
+@csrf_exempt
+def get_user(req):
+    if req.method == "GET":
+        token_obj = JWTAuthenticator.authenticate(req)
+        username = str(token_obj[0])
+        user = User.objects.get(username=username)
+        return JsonResponse(
+            {
+                "username": user.username,
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+                "id": user.id,
+            }
+        )
+    else:
+        return JsonResponse({"error": "Method not permitted."}, status=400)
 
 
 @csrf_exempt

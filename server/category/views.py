@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import Category
 
@@ -9,10 +10,10 @@ JWTAuthenticator = JWTAuthentication()
 def get_categories(req):
     # if not req.headers["Authorization"]:
     #     return JsonResponse({"error": "Need to be an authenticated user."})
-    token = req.headers["Authorization"].split()[1]
-    user = JWTAuthenticator.authenticate(req)
-    print(user)
-    user_id = req.user.id
+    token_obj = JWTAuthenticator.authenticate(req)
+    username = str(token_obj[0])
+    user = User.objects.get(username=username)
+    user_id = user.id
     if req.method == "GET":
         q = Category.objects.filter(user_id=user_id)
         return JsonResponse([cat.serialise() for cat in q], safe=False)
