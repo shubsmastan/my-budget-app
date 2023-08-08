@@ -1,8 +1,6 @@
 # My Budget App
 
-Live preview coming soon.
-
-<!-- [Live preview]() -->
+[Live preview](https://shubsmastan-my-budget-app.netlify.app)
 
 ## Description
 
