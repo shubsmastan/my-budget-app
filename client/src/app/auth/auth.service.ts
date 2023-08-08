@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -14,13 +15,15 @@ export class AuthService {
     private router: Router
   ) {}
 
+  url = environment.baseUrl;
   isLoggedIn = this.cookieService.get('accesstoken') ? true : false;
   error = '';
   errorSubject = new BehaviorSubject<string>(this.error);
 
   signIn(formData: { username: string; password: string }) {
+    console.log(this.url);
     this.http
-      .post('http://localhost:8000/users/signin/', JSON.stringify(formData))
+      .post(`${this.url}/users/signin/`, JSON.stringify(formData))
       .subscribe({
         next: (res: any) => {
           this.cookieService.set('accesstoken', res.token);
@@ -46,7 +49,7 @@ export class AuthService {
     confirm_password: string;
   }) {
     this.http
-      .post('http://localhost:8000/users/signup/', JSON.stringify(formData))
+      .post(`${this.url}/users/signup/`, JSON.stringify(formData))
       .subscribe({
         next: (res: any) => {
           this.cookieService.set('accesstoken', res.token);

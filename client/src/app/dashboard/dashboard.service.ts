@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class DashboardService {
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
+  url = environment.baseUrl;
   user: any;
   categories: any = [];
   isLoading = true;
@@ -18,7 +20,7 @@ export class DashboardService {
 
   getUser() {
     this.http
-      .get('http://localhost:8000/users/', {
+      .get(`${this.url}/users/`, {
         headers: {
           Authorization: `Token ${this.cookieService.get('accesstoken')}`,
         },
@@ -39,7 +41,7 @@ export class DashboardService {
 
   getCategories() {
     this.http
-      .get('http://localhost:8000/categories/', {
+      .get(`${this.url}/categories/`, {
         headers: {
           Authorization: `Token ${this.cookieService.get('accesstoken')}`,
         },
