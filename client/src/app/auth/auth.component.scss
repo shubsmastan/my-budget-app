@@ -6,6 +6,12 @@ form {
 
 button {
   @include btn-primary($dark-pink, white);
+  width: 175px;
+  margin-top: 10px;
+}
+
+a {
+  cursor: pointer;
 }
 
 input {

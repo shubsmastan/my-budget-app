@@ -7,7 +7,7 @@
     </svg>
     <h1>My Budget App</h1>
   </a>
-  <button *ngIf="authService.isLoggedIn" (click)="this.authService.logout()">
+  <button *ngIf="authService.isLoggedIn" (click)="authService.signOut()">
     Sign out
   </button>
   <a class="btn" *ngIf="!authService.isLoggedIn" routerLink="/auth">Sign in</a>

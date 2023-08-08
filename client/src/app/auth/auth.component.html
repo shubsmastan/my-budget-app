@@ -1,10 +1,45 @@
-<div class="pad">
+<div class="pad" *ngIf="!isRegistering">
   <form class="flex" [formGroup]="authForm">
     <label for="username">Username</label>
     <input type="username" formControlName="username" id="username" value="" />
     <label for="pwd">Password</label>
     <input type="password" formControlName="password" id="password" value="" />
-    <button (click)="onSubmit($event)">Log in</button>
+    <button (click)="onSubmit($event, false, false)">Sign in</button>
+    <button (click)="onSubmit($event, true, false)">Guest login</button>
+    <p>Click <a (click)="toggleFormState()">here</a> to register.</p>
+    <p class="error">{{ authService.error }}</p>
+  </form>
+</div>
+
+<div class="pad" *ngIf="isRegistering">
+  <form class="flex" [formGroup]="regForm">
+    <label for="first_name">First Name</label>
+    <input
+      type="first_name"
+      formControlName="first_name"
+      id="first_name"
+      value=""
+    />
+    <label for="last_name">Last Name</label>
+    <input
+      type="last_name"
+      formControlName="last_name"
+      id="last_name"
+      value=""
+    />
+    <label for="last_name">Username</label>
+    <input type="username" formControlName="username" id="username" value="" />
+    <label for="password">Password</label>
+    <input type="password" formControlName="password" id="password" value="" />
+    <label for="confirm_password">Password</label>
+    <input
+      type="password"
+      formControlName="confirm_password"
+      id="confirm_password"
+      value=""
+    />
+    <button (click)="onSubmit($event, false, true)">Sign up</button>
+    <p>Click <a (click)="toggleFormState()">here</a> to sign in.</p>
     <p class="error">{{ authService.error }}</p>
   </form>
 </div>

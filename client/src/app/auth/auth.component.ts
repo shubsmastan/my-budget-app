@@ -13,15 +13,51 @@ export class AuthComponent {
     public authService: AuthService
   ) {}
 
+  isRegistering = false;
+
   authForm = this.formBuilder.group({
     username: '',
     password: '',
   });
 
-  onSubmit(e: Event) {
+  regForm = this.formBuilder.group({
+    first_name: '',
+    last_name: '',
+    username: '',
+    password: '',
+    confirm_password: '',
+  });
+
+  onSubmit(e: Event, guest: boolean, isRegistering: boolean) {
     e.preventDefault();
-    const username = this.authForm.value.username!;
-    const password = this.authForm.value.password!;
-    this.authService.login({ username, password });
+    let username, password;
+    if (isRegistering) {
+      const first_name = this.regForm.value.first_name!;
+      const last_name = this.regForm.value.last_name!;
+      username = this.regForm.value.username!;
+      password = this.regForm.value.password!;
+      const confirm_password = this.regForm.value.confirm_password!;
+      this.authService.signUp({
+        first_name,
+        last_name,
+        username,
+        password,
+        confirm_password,
+      });
+      this.isRegistering = true;
+      return;
+    }
+    if (guest) {
+      username = 'guest';
+      password = 'guest123';
+    } else {
+      username = this.authForm.value.username!;
+      password = this.authForm.value.password!;
+    }
+    this.authService.signIn({ username, password });
+  }
+
+  toggleFormState() {
+    this.isRegistering = !this.isRegistering;
   }
 }

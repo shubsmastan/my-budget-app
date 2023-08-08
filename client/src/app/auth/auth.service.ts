@@ -18,7 +18,7 @@ export class AuthService {
   error = '';
   errorSubject = new BehaviorSubject<string>(this.error);
 
-  login(formData: { username: string; password: string }) {
+  signIn(formData: { username: string; password: string }) {
     this.http
       .post('http://localhost:8000/users/signin/', JSON.stringify(formData))
       .subscribe({
@@ -38,7 +38,33 @@ export class AuthService {
       });
   }
 
-  logout() {
+  signUp(formData: {
+    first_name: string;
+    last_name: string;
+    username: string;
+    password: string;
+    confirm_password: string;
+  }) {
+    this.http
+      .post('http://localhost:8000/users/signup/', JSON.stringify(formData))
+      .subscribe({
+        next: (res: any) => {
+          this.cookieService.set('accesstoken', res.token);
+          this.isLoggedIn = true;
+          this.router.navigate(['/dashboard']);
+        },
+        error: (err) => {
+          if (err.error.error) {
+            this.error = err.error.error;
+            return;
+          }
+          this.error = 'Something went wrong. Please try again.';
+          console.log(err);
+        },
+      });
+  }
+
+  signOut() {
     this.cookieService.delete('accesstoken');
     this.isLoggedIn = false;
     this.router.navigate(['/auth']);

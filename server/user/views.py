@@ -10,22 +10,24 @@ import json
 JWTAuthenticator = JWTAuthentication()
 
 
-@csrf_exempt
 def get_user(req):
-    if req.method == "GET":
-        token_obj = JWTAuthenticator.authenticate(req)
-        username = str(token_obj[0])
-        user = User.objects.get(username=username)
-        return JsonResponse(
-            {
-                "username": user.username,
-                "first_name": user.first_name,
-                "last_name": user.last_name,
-                "id": user.id,
-            }
-        )
-    else:
-        return JsonResponse({"error": "Method not permitted."}, status=400)
+    try:
+        if req.method == "GET":
+            token_obj = JWTAuthenticator.authenticate(req)
+            username = str(token_obj[0])
+            user = User.objects.get(username=username)
+            return JsonResponse(
+                {
+                    "username": user.username,
+                    "first_name": user.first_name,
+                    "last_name": user.last_name,
+                    "id": user.id,
+                }
+            )
+        else:
+            return JsonResponse({"error": "Method not permitted."}, status=400)
+    except:
+        return JsonResponse({"error": "Authentication failed."}, status=401)
 
 
 @csrf_exempt
