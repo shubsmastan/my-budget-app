@@ -29,11 +29,8 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG")
 
-ALLOWED_HOSTS = []
 
-print(os.getenv("ALLOWED_HOSTS"))
-
-# ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -72,9 +69,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = False
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4200",
-]
+CORS_ALLOWED_ORIGINS = os.getenv("FRONT_URL")
 
 ROOT_URLCONF = "config.urls"
 
