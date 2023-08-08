@@ -1,7 +1,7 @@
 @import "../../styles.scss";
 
 form {
-  flex-direction: column;
+  @include flex(column, center, center, 10px);
 }
 
 button {

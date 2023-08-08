@@ -1,5 +1,5 @@
 <div class="pad" *ngIf="!isRegistering">
-  <form class="flex" [formGroup]="authForm">
+  <form [formGroup]="authForm">
     <label for="username">Username</label>
     <input type="username" formControlName="username" id="username" value="" />
     <label for="pwd">Password</label>
@@ -12,7 +12,7 @@
 </div>
 
 <div class="pad" *ngIf="isRegistering">
-  <form class="flex" [formGroup]="regForm">
+  <form [formGroup]="regForm">
     <label for="first_name">First Name</label>
     <input
       type="first_name"
