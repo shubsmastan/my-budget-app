@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { DashboardService } from '../dashboard.service';
 
 @Component({
@@ -7,12 +8,25 @@ import { DashboardService } from '../dashboard.service';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
-  constructor(public dashboardService: DashboardService) {}
+  constructor(
+    public dashboardService: DashboardService,
+    private router: Router
+  ) {}
 
-  isModalOpen = true;
+  isModalOpen = false;
 
   ngOnInit() {
     this.dashboardService.getUser();
     this.dashboardService.getCategories();
   }
+
+  setModalOpen = (id: string) => {
+    this.isModalOpen = true;
+    this.router.navigate(['/dashboard/' + id]);
+  };
+
+  setModalClosed = () => {
+    this.isModalOpen = false;
+    this.router.navigate(['/dashboard/main']);
+  };
 }

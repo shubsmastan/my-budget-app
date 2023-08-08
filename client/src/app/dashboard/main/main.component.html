@@ -11,7 +11,7 @@
   <!-- <button>+ Add Category</button> -->
   <p>
     Hello {{ dashboardService.user.first_name }}! How is your spending this
-    month?
+    month? {{ isModalOpen }}
   </p>
   <div class="categories">
     <div *ngFor="let cat of dashboardService.categories" class="category-card">
@@ -24,7 +24,11 @@
         src="{{ '../../../../../assets/icons/' + cat.name + '.png' }}"
       />
       <p>
-        <a [routerLink]="['/dashboard', cat.id]">{{ cat.name }}</a>
+        <a
+          (click)="setModalOpen(cat.id)"
+          [routerLink]="['/dashboard', cat.id]"
+          >{{ cat.name }}</a
+        >
       </p>
       <p>Budget</p>
       <p>Spend</p>
@@ -32,4 +36,8 @@
   </div>
 </div>
 
-<app-modal *ngIf="isModalOpen"></app-modal>
+<app-modal
+  *ngIf="isModalOpen"
+  [open]="isModalOpen"
+  [close]="setModalClosed"
+></app-modal>
