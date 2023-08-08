@@ -69,7 +69,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = False
-CORS_ALLOWED_ORIGINS = os.getenv("FRONT_URL")
+CORS_ALLOWED_ORIGINS = os.getenv("FRONT_URL").split(" ")
 
 ROOT_URLCONF = "config.urls"
 
