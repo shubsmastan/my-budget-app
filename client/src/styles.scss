@@ -45,6 +45,13 @@ button {
   cursor: pointer;
 }
 
+@mixin btn-primary($bgcolor, $color) {
+  padding: 8px 12px;
+  border-radius: 10px;
+  background-color: $bgcolor;
+  color: $color;
+}
+
 a {
   color: $dark-pink;
   text-decoration: none;
@@ -54,15 +61,20 @@ a {
   }
 }
 
-.center {
-  text-align: center;
+@mixin flex($direction, $justify, $align, $gap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
 }
 
 .flex {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
+  @include flex(row, center, center, 10px);
+}
+
+.center {
+  text-align: center;
 }
 
 .pad {
@@ -73,11 +85,30 @@ a {
   color: red;
 }
 
-@mixin btn-primary($bgcolor, $color) {
-  padding: 8px 12px;
-  border-radius: 10px;
-  background-color: $bgcolor;
-  color: $color;
+.card-buttons {
+  @include flex(row, flex-end, center, 10px);
+  display: flex;
+  padding: 0 7px;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  button {
+    background-color: transparent;
+    font-weight: bold;
+  }
+}
+
+.confirm {
+  font-size: 1.5rem;
+}
+
+.edit {
+  font-size: 1rem;
+}
+
+.delete {
+  font-size: 1.25rem;
 }
 
 @media screen and (min-width: 600px) {

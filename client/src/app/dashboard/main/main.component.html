@@ -19,6 +19,10 @@
         <button class="edit">✐</button>
         <button class="delete">×</button>
       </div>
+      <img
+        class="category-icon"
+        src="{{ '../../../../../assets/icons/' + cat.name + '.png' }}"
+      />
       <p>
         <a [routerLink]="['/dashboard', cat.id]">{{ cat.name }}</a>
       </p>
@@ -27,3 +31,5 @@
     </div>
   </div>
 </div>
+
+<app-modal *ngIf="isModalOpen"></app-modal>

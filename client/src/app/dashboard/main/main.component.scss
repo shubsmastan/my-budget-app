@@ -14,36 +14,6 @@
   position: relative;
 }
 
-.card-buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 7px;
-  padding: 0 7px;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-.delete {
-  //   color: red;
-  font-weight: bold;
-  font-size: 1.25rem;
-}
-
-.confirm {
-  //   color: red;
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-.edit {
-  color: var(--color-orange);
-}
-
-.confirm {
-  color: var(--color-sage);
-}
-
 .loading {
   display: flex;
   flex-direction: column;
@@ -60,6 +30,10 @@
   .animate {
     animation: flash 1.25s ease-in-out 0s infinite;
   }
+}
+
+.category-icon {
+  height: 50px;
 }
 
 @keyframes flash {
