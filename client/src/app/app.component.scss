@@ -1,0 +1,15 @@
+@import "../styles.scss";
+
+footer {
+  @include flex(row, center, center, 20px);
+  position: fixed;
+  bottom: 0;
+  font-size: 12px;
+  padding: 5px 20px;
+  width: 100%;
+}
+
+.gh-logo {
+  height: 20px;
+  width: 20px;
+}
