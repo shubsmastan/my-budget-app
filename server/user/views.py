@@ -10,6 +10,7 @@ import json
 JWTAuthenticator = JWTAuthentication()
 
 
+@csrf_exempt
 def get_user(req):
     try:
         if req.method == "GET":
