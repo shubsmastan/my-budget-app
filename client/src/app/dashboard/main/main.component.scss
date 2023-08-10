@@ -10,8 +10,22 @@
   background-color: $light-cream;
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.3);
   border-radius: 8px;
-  padding: 20px;
+  padding: 20px 20px 15px;
   position: relative;
+
+  .category-icon {
+    height: 50px;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+  }
+
+  p {
+    margin-bottom: 5px;
+  }
 }
 
 .loading {
@@ -30,10 +44,6 @@
   .animate {
     animation: flash 1.25s ease-in-out 0s infinite;
   }
-}
-
-.category-icon {
-  height: 50px;
 }
 
 @keyframes flash {

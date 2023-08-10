@@ -14,7 +14,10 @@
     month?
   </p>
   <div class="categories">
-    <div *ngFor="let cat of dashboardService.categories" class="category-card">
+    <div
+      *ngFor="let cat of dashboardService.categories"
+      class="category-card center"
+    >
       <div class="card-buttons">
         <button class="edit">✐</button>
         <button class="delete">×</button>
@@ -27,23 +30,23 @@
       <img
         class="category-icon"
         *ngIf="!categoriesWithImages.includes(cat.name)"
-        src="{{ '../../../../../assets/icons/Other.png' }}"
+        src="../../../../../assets/icons/Other.png"
       />
-      <p>
+      <h2>
         <a
           (click)="setModalOpen(cat.id)"
           [routerLink]="['/dashboard', cat.id]"
           >{{ cat.name }}</a
         >
-      </p>
+      </h2>
       <p>Budget</p>
       <p>Spend</p>
     </div>
   </div>
 </div>
 
-<app-modal
+<app-category
   *ngIf="isModalOpen"
   [open]="isModalOpen"
   [close]="setModalClosed"
-></app-modal>
+></app-category>

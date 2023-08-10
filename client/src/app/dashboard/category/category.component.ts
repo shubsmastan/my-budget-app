@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DashboardService } from '../dashboard.service';
 
 @Component({
   selector: 'app-category',
@@ -7,11 +9,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent {
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    public dashboardService: DashboardService,
+    private route: ActivatedRoute
+  ) {}
 
-  id: string | null = null;
+  @Input() open: boolean = false;
 
-  ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id');
-  }
+  @Input() close: () => void = () => {};
+
+  id: string | null = this.route.snapshot.paramMap.get('id');
+  category: any = this.dashboardService.categories.find(
+    (cat: any) => (cat.id = this.id)
+  );
+  entries: any = [];
 }

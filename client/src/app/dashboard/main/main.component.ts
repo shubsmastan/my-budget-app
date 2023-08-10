@@ -36,11 +36,15 @@ export class MainComponent {
   }
 
   setModalOpen = (id: string) => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('main')!.style.paddingRight = '0';
     this.isModalOpen = true;
     this.router.navigate(['/dashboard/' + id]);
   };
 
   setModalClosed = () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('main')!.style.paddingRight = '0';
     this.isModalOpen = false;
     this.router.navigate(['/dashboard/main']);
   };
