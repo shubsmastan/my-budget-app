@@ -16,9 +16,9 @@ export class ModalComponent {
 
   @ViewChild('modalRef') divCategory!: ElementRef;
 
-  id: string | null = this.route.snapshot.paramMap.get('id');
+  id: number = parseInt(this.route.snapshot.paramMap.get('id')!);
   category: any = this.dashboardService.categories.find(
-    (cat: any) => (cat.id = this.id)
+    (cat: any) => cat.id === this.id
   );
 
   @Input() open: boolean = false;
@@ -29,5 +29,10 @@ export class ModalComponent {
     if (event.target === this.divCategory.nativeElement) {
       this.close();
     }
+  }
+
+  onDelete() {
+    this.dashboardService.deleteCategory(this.id);
+    this.close();
   }
 }

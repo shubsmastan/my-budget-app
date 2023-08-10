@@ -31,6 +31,10 @@ export class MainComponent {
     'Transport',
   ];
 
+  onAddCategory() {
+    this.dashboardService.newCategory();
+  }
+
   ngOnInit() {
     this.dashboardService.getUser();
     this.dashboardService.getCategories();
@@ -40,7 +44,6 @@ export class MainComponent {
     document.body.style.overflow = 'hidden';
     document.getElementById('main')!.style.paddingRight = '0';
     this.isCategoryOpen = true;
-    this.router.navigate(['/dashboard/' + id]);
   };
 
   setCategoryClosed = () => {
@@ -54,7 +57,6 @@ export class MainComponent {
     document.body.style.overflow = 'hidden';
     document.getElementById('main')!.style.paddingRight = '0';
     this.isModalOpen = true;
-    this.router.navigate(['/dashboard/' + id + '/delete']);
   };
 
   setModalClosed = () => {

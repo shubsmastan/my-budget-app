@@ -8,7 +8,6 @@
 </div>
 
 <div class="pad" *ngIf="dashboardService.categories.length > 0">
-  <!-- <button>+ Add Category</button> -->
   <p>
     Hello {{ dashboardService.user.first_name }}! How is your spending this
     month?
@@ -20,7 +19,13 @@
     >
       <div class="card-buttons">
         <!-- <button class="edit" (click)="setModalOpen(cat.id)">✐</button> -->
-        <button class="delete" (click)="setModalOpen(cat.id)">×</button>
+        <button
+          class="delete"
+          [routerLink]="['/dashboard', cat.id]"
+          (click)="setModalOpen(cat.id)"
+        >
+          ×
+        </button>
       </div>
       <img
         class="category-icon"
@@ -42,6 +47,9 @@
       <p>Budget</p>
       <p>Spend</p>
     </div>
+  </div>
+  <div class="add-button">
+    <button class="add-button" (click)="onAddCategory()">+ Add Category</button>
   </div>
 </div>
 

@@ -20,9 +20,9 @@ export class CategoryComponent {
 
   @Input() close: () => void = () => {};
 
-  id: string | null = this.route.snapshot.paramMap.get('id');
+  id: number = parseInt(this.route.snapshot.paramMap.get('id')!);
   category: any = this.dashboardService.categories.find(
-    (cat: any) => (cat.id = this.id)
+    (cat: any) => cat.id === this.id
   );
   entries: any = [];
 

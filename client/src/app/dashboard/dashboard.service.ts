@@ -70,4 +70,69 @@ export class DashboardService {
         },
       });
   }
+
+  newCategory() {
+    this.http
+      .post(
+        `${this.url}/categories/`,
+        JSON.stringify({ name: 'New Category' }),
+        {
+          headers: {
+            Authorization: `Token ${this.cookieService.get('accesstoken')}`,
+          },
+        }
+      )
+      .subscribe({
+        next: (res: any) => {
+          if (res.error) {
+            this.error = res.error;
+            console.log(this.error);
+            this.isLoading = false;
+            return;
+          }
+          this.categories = res;
+          this.isLoading = false;
+          return res;
+        },
+        error: (err) => {
+          if (err.error.error) {
+            this.error = err.error.error;
+            this.isLoading = false;
+            return;
+          }
+          this.error = 'Something went wrong. Please try again.';
+          console.log(err);
+          this.isLoading = false;
+        },
+      });
+  }
+
+  deleteCategory(id: number) {
+    this.http
+      .delete(`${this.url}/categories/${id}`, {
+        headers: {
+          Authorization: `Token ${this.cookieService.get('accesstoken')}`,
+        },
+      })
+      .subscribe({
+        next: (res: any) => {
+          if (res.error) {
+            this.error = res.error;
+            console.log(this.error);
+            return;
+          }
+          this.categories = this.categories.filter((cat: any) => cat.id !== id);
+          return res;
+        },
+        error: (err) => {
+          if (err.error.error) {
+            this.error = err.error.error;
+            return;
+          }
+          this.error = 'Something went wrong. Please try again.';
+          console.log(err);
+          this.isLoading = false;
+        },
+      });
+  }
 }

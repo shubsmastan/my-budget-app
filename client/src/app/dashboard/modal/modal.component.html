@@ -3,11 +3,13 @@
     <div class="card-buttons">
       <button class="delete" (click)="close()">×</button>
     </div>
-    <div class="modal-header"><h2>Modal Title</h2></div>
-    <div class="modal-content">Hi.</div>
+    <div class="modal-header"><h2>Confirm Deletion</h2></div>
+    <div class="modal-content">
+      <p>Are you sure you want to delete the category {{ category.name }}?</p>
+    </div>
     <div class="modal-footer">
-      <button>Press me.</button>
-      <button>Press me.</button>
+      <button class="cancel-delete" (click)="close()">Cancel</button>
+      <button class="confirm-delete" (click)="onDelete()">Delete</button>
     </div>
   </div>
 </div>

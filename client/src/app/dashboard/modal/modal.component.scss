@@ -5,5 +5,13 @@
 }
 
 button {
-  @include btn-primary($light-pink, black);
+  &.cancel-delete {
+    @include btn-primary(transparent, black);
+    border: 2px solid $dark-pink;
+  }
+
+  &.confirm-delete {
+    @include btn-primary($light-pink, black);
+    border: 2px solid $dark-pink;
+  }
 }
