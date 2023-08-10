@@ -7,11 +7,11 @@
 button {
   &.cancel-delete {
     @include btn-primary(transparent, black);
-    border: 2px solid $dark-pink;
+    border: 2px solid pink;
   }
 
   &.confirm-delete {
     @include btn-primary($light-pink, black);
-    border: 2px solid $dark-pink;
+    border: 2px solid $light-pink;
   }
 }

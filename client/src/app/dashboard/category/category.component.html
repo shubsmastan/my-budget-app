@@ -4,12 +4,15 @@
       <button class="delete" (click)="close()">×</button>
     </div>
     <div class="modal-header">
-      <h1>{{ category.name }}</h1>
+      <h1>Your spending on {{ category.name }} this month:</h1>
     </div>
-    <div class="modal-content">Hi.</div>
+    <div class="modal-content">
+      <input type="month" value="{{ date }}" required />
+      <p>Info goes here!</p>
+      <p>And maybe a graph or two.</p>
+    </div>
     <div class="modal-footer">
-      <button>Press me.</button>
-      <button>Press me.</button>
+      <button (click)="close()">Close</button>
     </div>
   </div>
 </div>

@@ -25,6 +25,11 @@ export class CategoryComponent {
     (cat: any) => cat.id === this.id
   );
   entries: any = [];
+  date: string = new Date(Date.now()).toISOString().match(/(.{1,7})/g)![0];
+
+  ngOnInit() {
+    console.log(this.date);
+  }
 
   modalClick(event: Event) {
     if (event.target === this.divCategory.nativeElement) {
