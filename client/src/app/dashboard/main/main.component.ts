@@ -15,6 +15,21 @@ export class MainComponent {
 
   isModalOpen = false;
 
+  categoriesWithImages = [
+    'Bills',
+    'Charity',
+    'Eating out',
+    'Entertainment',
+    'Expenses',
+    'Finances',
+    'Gifts',
+    'Groceries',
+    'Holidays',
+    'Personal care',
+    'Shopping',
+    'Transport',
+  ];
+
   ngOnInit() {
     this.dashboardService.getUser();
     this.dashboardService.getCategories();

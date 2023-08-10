@@ -11,7 +11,7 @@
   <!-- <button>+ Add Category</button> -->
   <p>
     Hello {{ dashboardService.user.first_name }}! How is your spending this
-    month? {{ isModalOpen }}
+    month?
   </p>
   <div class="categories">
     <div *ngFor="let cat of dashboardService.categories" class="category-card">
@@ -21,7 +21,13 @@
       </div>
       <img
         class="category-icon"
+        *ngIf="categoriesWithImages.includes(cat.name)"
         src="{{ '../../../../../assets/icons/' + cat.name + '.png' }}"
+      />
+      <img
+        class="category-icon"
+        *ngIf="!categoriesWithImages.includes(cat.name)"
+        src="{{ '../../../../../assets/icons/Other.png' }}"
       />
       <p>
         <a
