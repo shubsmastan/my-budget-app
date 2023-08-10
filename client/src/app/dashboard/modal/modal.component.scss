@@ -1,49 +1,7 @@
 @import "../../../styles.scss";
 
-.modal {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  padding-top: 250px;
-  overflow: auto;
-  background-color: #000;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
 .modal-body {
-  position: relative;
-  background-color: $light-cream;
-  margin: auto;
-  border: 1px solid #888;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 8px;
-  width: 80%;
-  animation-name: fade-from-top;
-  animation-duration: 0.3s;
-  padding: 20px;
-}
-
-@keyframes fade-from-top {
-  from {
-    top: -100px;
-    opacity: 0;
-  }
-  to {
-    top: 0;
-    opacity: 1;
-  }
-}
-
-.modal-header,
-.modal-content {
-  margin-bottom: 20px;
-}
-
-.modal-footer {
-  @include flex(row, center, center, 50px);
+  max-width: 600px;
 }
 
 button {

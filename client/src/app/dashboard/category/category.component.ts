@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DashboardService } from '../dashboard.service';
@@ -14,6 +14,8 @@ export class CategoryComponent {
     private route: ActivatedRoute
   ) {}
 
+  @ViewChild('categoryRef') divCategory!: ElementRef;
+
   @Input() open: boolean = false;
 
   @Input() close: () => void = () => {};
@@ -23,4 +25,10 @@ export class CategoryComponent {
     (cat: any) => (cat.id = this.id)
   );
   entries: any = [];
+
+  modalClick(event: Event) {
+    if (event.target === this.divCategory.nativeElement) {
+      this.close();
+    }
+  }
 }

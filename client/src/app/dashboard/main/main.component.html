@@ -19,8 +19,8 @@
       class="category-card center"
     >
       <div class="card-buttons">
-        <button class="edit">✐</button>
-        <button class="delete">×</button>
+        <!-- <button class="edit" (click)="setModalOpen(cat.id)">✐</button> -->
+        <button class="delete" (click)="setModalOpen(cat.id)">×</button>
       </div>
       <img
         class="category-icon"
@@ -34,7 +34,7 @@
       />
       <h2>
         <a
-          (click)="setModalOpen(cat.id)"
+          (click)="setCategoryOpen(cat.id)"
           [routerLink]="['/dashboard', cat.id]"
           >{{ cat.name }}</a
         >
@@ -46,7 +46,13 @@
 </div>
 
 <app-category
+  *ngIf="isCategoryOpen"
+  [open]="isCategoryOpen"
+  [close]="setCategoryClosed"
+></app-category>
+
+<app-modal
   *ngIf="isModalOpen"
   [open]="isModalOpen"
   [close]="setModalClosed"
-></app-category>
+></app-modal>

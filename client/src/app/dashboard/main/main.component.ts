@@ -13,6 +13,7 @@ export class MainComponent {
     private router: Router
   ) {}
 
+  isCategoryOpen = false;
   isModalOpen = false;
 
   categoriesWithImages = [
@@ -35,11 +36,25 @@ export class MainComponent {
     this.dashboardService.getCategories();
   }
 
+  setCategoryOpen = (id: string) => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('main')!.style.paddingRight = '0';
+    this.isCategoryOpen = true;
+    this.router.navigate(['/dashboard/' + id]);
+  };
+
+  setCategoryClosed = () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('main')!.style.paddingRight = '0';
+    this.isCategoryOpen = false;
+    this.router.navigate(['/dashboard/main']);
+  };
+
   setModalOpen = (id: string) => {
     document.body.style.overflow = 'hidden';
     document.getElementById('main')!.style.paddingRight = '0';
     this.isModalOpen = true;
-    this.router.navigate(['/dashboard/' + id]);
+    this.router.navigate(['/dashboard/' + id + '/delete']);
   };
 
   setModalClosed = () => {

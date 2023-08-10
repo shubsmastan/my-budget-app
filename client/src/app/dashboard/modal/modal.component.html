@@ -1,9 +1,9 @@
-<div class="modal">
+<div #modalRef class="modal" (click)="modalClick($event)">
   <div class="modal-body">
     <div class="card-buttons">
       <button class="delete" (click)="close()">×</button>
     </div>
-    <div class="modal-header"><h1>Modal Title</h1></div>
+    <div class="modal-header"><h2>Modal Title</h2></div>
     <div class="modal-content">Hi.</div>
     <div class="modal-footer">
       <button>Press me.</button>
