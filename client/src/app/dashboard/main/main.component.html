@@ -8,10 +8,8 @@
 </div>
 
 <div class="pad" *ngIf="dashboardService.categories.length > 0">
-  <p>
-    Hello {{ dashboardService.user.first_name }}! How is your spending this
-    month?
-  </p>
+  <h2>Hello {{ dashboardService.user.first_name }}!</h2>
+  <p>How is your spending this month?</p>
   <div class="categories">
     <div
       *ngFor="let cat of dashboardService.categories"

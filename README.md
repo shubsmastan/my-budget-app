@@ -4,11 +4,11 @@
 
 ## Description
 
-A project to allow a user to create monthly budgets. More info coming soon.
+A project to allow a user to create monthly budgets and view data about their spending.
 
-<!-- - Frontend created in Angular.
-- Backend uses Python (Django).
-- Database in SQL. -->
+- Frontend created in TypeScript/Angular.
+- Backend uses Python/Django.
+- Database in PostgreSQL.
 
 ## Authors
 
