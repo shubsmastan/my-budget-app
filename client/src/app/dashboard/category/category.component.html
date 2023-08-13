@@ -4,12 +4,25 @@
       <button class="delete" (click)="close()">×</button>
     </div>
     <div class="modal-header">
-      <h1>Your spending on {{ category.name }} this month:</h1>
+      <h1>{{ category.name }}:</h1>
     </div>
     <div class="modal-content">
-      <input type="month" value="{{ date }}" required />
-      <p>Info goes here!</p>
-      <p>And maybe a graph or two.</p>
+      <form [formGroup]="dateForm">
+        <input type="month" formControlName="date" id="date" required />
+      </form>
+      <div *ngIf="this.entry">
+        <p>Your planned budget in this category for {{ stringDate }}</p>
+        <p>{{ entry.budget }}</p>
+        <p>Your actual spend in this category for {{ stringDate }}</p>
+        <p>{{ entry.spend }}</p>
+      </div>
+      <div>
+        <p>Your spending in this category over the last 12 months:</p>
+        <div>(graph will go here)</div>
+      </div>
+      <div *ngIf="!this.entry">
+        <p>No entry for this month.</p>
+      </div>
     </div>
     <div class="modal-footer">
       <button (click)="close()">Close</button>

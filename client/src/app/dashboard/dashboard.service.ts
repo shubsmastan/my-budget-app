@@ -12,7 +12,8 @@ export class DashboardService {
 
   url = environment.baseUrl;
   user: any;
-  categories: any = [];
+  categories: any[] = [];
+  entries: any[] = [];
   isLoading = true;
   error = '';
   categorySubject = new BehaviorSubject<any[]>(this.categories);
@@ -127,6 +128,77 @@ export class DashboardService {
         error: (err) => {
           if (err.error.error) {
             this.error = err.error.error;
+            return;
+          }
+          this.error = 'Something went wrong. Please try again.';
+          console.log(err);
+          this.isLoading = false;
+        },
+      });
+  }
+
+  getEntries() {
+    this.http
+      .get(`${this.url}/entries/`, {
+        headers: {
+          Authorization: `Token ${this.cookieService.get('accesstoken')}`,
+        },
+      })
+      .subscribe({
+        next: (res: any) => {
+          if (res.error) {
+            this.error = res.error;
+            console.log(this.error);
+            this.isLoading = false;
+            return;
+          }
+          this.entries = res;
+          this.isLoading = false;
+          return res;
+        },
+        error: (err) => {
+          if (err.error.error) {
+            this.error = err.error.error;
+            this.isLoading = false;
+            return;
+          }
+          this.error = 'Something went wrong. Please try again.';
+          console.log(err);
+          this.isLoading = false;
+        },
+      });
+  }
+
+  newEntry(category_id: number, date: string, budget: number, spend: number) {
+    if (!spend) {
+      spend === 0;
+    }
+    this.http
+      .post(
+        `${this.url}/entries/`,
+        JSON.stringify({ category_id, date, budget, spend: spend }),
+        {
+          headers: {
+            Authorization: `Token ${this.cookieService.get('accesstoken')}`,
+          },
+        }
+      )
+      .subscribe({
+        next: (res: any) => {
+          if (res.error) {
+            this.error = res.error;
+            console.log(this.error);
+            this.isLoading = false;
+            return;
+          }
+          this.categories = res;
+          this.isLoading = false;
+          return res;
+        },
+        error: (err) => {
+          if (err.error.error) {
+            this.error = err.error.error;
+            this.isLoading = false;
             return;
           }
           this.error = 'Something went wrong. Please try again.';

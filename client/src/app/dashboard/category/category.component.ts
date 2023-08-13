@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Input } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DashboardService } from '../dashboard.service';
 
@@ -10,6 +11,7 @@ import { DashboardService } from '../dashboard.service';
 })
 export class CategoryComponent {
   constructor(
+    private formBuilder: FormBuilder,
     public dashboardService: DashboardService,
     private route: ActivatedRoute
   ) {}
@@ -21,14 +23,31 @@ export class CategoryComponent {
   @Input() close: () => void = () => {};
 
   id: number = parseInt(this.route.snapshot.paramMap.get('id')!);
+  date: string = new Date(Date.now()).toISOString().split('-', 2).join('-');
+  stringDate: string = new Date(Date.now()).toLocaleString('default', {
+    month: 'long',
+    year: 'numeric',
+  });
+  dateForm = this.formBuilder.group({
+    date: this.date,
+  });
   category: any = this.dashboardService.categories.find(
     (cat: any) => cat.id === this.id
   );
-  entries: any = [];
-  date: string = new Date(Date.now()).toISOString().match(/(.{1,7})/g)![0];
+  entries: any = this.dashboardService.entries.filter(
+    (entry) => entry.category_id === this.id
+  );
+  entry: any = this.entries.find(
+    (entry: any) => entry.date === this.date + '-01'
+  );
 
-  ngOnInit() {
-    console.log(this.date);
+  ngOnChanges() {
+    this.dateForm.valueChanges.subscribe((changes) => {
+      this.date = changes.date!;
+      this.entry = this.entries.find(
+        (entry: any) => entry.date === this.date + '-01'
+      );
+    });
   }
 
   modalClick(event: Event) {

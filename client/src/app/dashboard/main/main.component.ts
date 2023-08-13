@@ -38,6 +38,7 @@ export class MainComponent {
   ngOnInit() {
     this.dashboardService.getUser();
     this.dashboardService.getCategories();
+    this.dashboardService.getEntries();
   }
 
   setCategoryOpen = (id: string) => {
