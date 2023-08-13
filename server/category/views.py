@@ -26,7 +26,7 @@ def get_categories(req):
 
     elif req.method == "POST":
         data = json.loads(req.body)
-        name = data["name"]
+        name = data.get("name")
         if name == None or name == "":
             return JsonResponse({"error": "Please enter a category name."}, status=400)
         category = Category(name=name, user_id=user_id)
@@ -65,7 +65,7 @@ def get_category(req, id):
 
     elif req.method == "PUT":
         data = json.loads(req.body)
-        name = data["name"]
+        name = data.get("name")
         if name == None or name == "":
             return JsonResponse(
                 {"error": "Please provide a category name."}, status=400
